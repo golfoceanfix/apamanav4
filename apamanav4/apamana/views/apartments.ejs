@@ -1,0 +1,44 @@
+
+<% include _header %>
+  <h4 align="center"><u>รายละเอียดอพาร์ทเมนท์ (Apartment)</u></h4>
+<div class="container">
+  <div class="row mt-5">
+
+    <div class="col-md-15">
+      
+      <table Class="table table-bordered table-haver">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>ชื่ออพาร์ทเมนท์</th>
+            <th>ที่อยู่ </th>
+            <th>เบอร์โทรศัพท์ </th>
+            <th>ชื่อผู้ดูแล </th>
+            <th>เบอร์ผู้ดูแล</th>
+            <th>Action </th>
+          </tr>
+        </thead>
+        <tbody>
+              <%  if(data){ %>
+                  <% for(var i = 0 ; i <data.length; i++){ %>
+                    <tr>
+                      <td> <%= (i+1) %> </td>
+                      <td> <%= data[i].name %> </td>
+                      <td> <%= data[i].address %> </td>
+                      <td> <%= data[i].tetephone %> </td>
+                      <td> <%= data[i].admin_name %> </td>
+                      <td> <%= data[i].admin_phone %> </td>
+                      <td>
+                         <a href="/apartment/delete/<%= data[i].id %>" class="btn btn-danger"> Delete </a>
+                         <a href="/apartment/update/<%= data[i].id %>" class="btn btn-info"> Update </a>
+                      </td>
+                    </tr>
+                <%  } %>
+              <%  } %>
+            </tbody>
+        </table>
+      </div>
+    </div>
+    </div>
+
+<% include _footer %>

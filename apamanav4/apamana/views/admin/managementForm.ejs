@@ -1,0 +1,48 @@
+<% include _header %>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-7">
+      <div class="card">
+        <div class="card-body">
+            <% if(data3) { %>
+              <form action="/admin/management/update/<%=data3[0].id%>" method="post">
+            <% } else { %>
+              <form action="/admin/management/add" method="post">
+            <% } %>
+
+              <div class="form-group">
+                <label>ชื่อหอพัก (Apartment)</label> <a href="/admin/apartment/new">เพิ่ม</a>
+                <select class="form-control" name="apartment_id">
+                  <option>กรุณาเลือก</option>
+                  <% if(data1){ %>
+                  <%  for(var i=0; i<data1.length; i++){ %>
+                      <option value="<%= data1[i].id %>" <% if(data3) if(data1[i].id == data3[0].apartment_id){ %> selected <% } %>> <%= data1[i].name %> </option>
+                   <%}%>
+                  <%}%>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>username</label><a href="/admin/localadmin/new">เพิ่ม</a>
+                <select class="form-control" name="local_id">
+                  <option>กรุณาเลือก</option>
+                  <% if(data2){ %>
+                  <%  for(var i=0; i<data2.length; i++){ %>
+                      <option value="<%= data2[i].id %>" <% if(data3) if(data2[i].id == data3[0].local_id){ %> selected <% } %>> <%= data2[i].username %> </option>
+                   <%}%>
+                  <%}%>
+                </select>
+                </div>
+              <div style ="text-align:center">
+        <button type="submit" class="btn btn-success">[บันทึก]</button>
+          <a href="/admin/management/new" class="btn btn-warning">[แก้ไข]</a>
+          </div>
+            </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% include _footer %>

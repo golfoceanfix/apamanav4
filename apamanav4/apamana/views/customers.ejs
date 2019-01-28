@@ -1,0 +1,46 @@
+<% include _header%>
+  <h4 align="center"><u>ชื่อผู้เช่า</u></h4>
+  <div class="container">
+    <div class="row mt-5">
+      <div class="col-md-15">
+
+        <a href="/customer/new" class="btn btn-primary">ADD</a>
+        <table class="table table-bordered table-hover ">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>บัตรประชาชน</th>
+              <th>ชื่อ</th>
+              <th>ที่อยู่</th>
+              <th>โทรศัพท์</th>
+              <th>ตำแหน่ง</th>
+              <th>หน่วยงาน</th>
+              <th>ชื่ออพาร์ทเมนท์</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if (data) { %>
+              <% for(var i=0; i<data.length; i++) { %>
+                <tr>
+                  <td> <%= (i+1) %> </td>
+                  <td> <%= data[i].Idcard %> </td>
+                  <td> <%= data[i].Cname %> </td>
+                  <td> <%= data[i].Address %> </td>
+                  <td> <%= data[i].Phone %> </td>
+                  <td> <%= data[i].Position %> </td>
+                  <td> <%= data[i].Organize %> </td>
+                  <td> <%= data[i].Apname %> </td>
+                  <td>
+                    <a href="/customer/delete/<%= data[i].No %>" class="btn btn-danger"> Delete </a>
+                    <a href="/customer/update/<%= data[i].No %>" class="btn btn-info"> Update </a>
+                  </td>
+                </tr>
+              <% } %>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+<% include _footer%>

@@ -1,0 +1,78 @@
+<% include _header %>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-15">
+      <div class="card">
+        <div class="card-body">
+            <% if(data4) { %>
+              <form action="/wi/update/<%=data4[0].id%>" method="post">
+            <% } else { %>
+              <form action="/wi/add" method="post">
+            <% } %>
+
+            <div class="form-group" hidden>
+                <label>apartment</label>
+                <% if(data1){ %>
+                  <input type="text" name="apartment_id" value="<%= data1[0].id %>" class="form-control">
+                <% } else { %>
+                  <input type="text" name="apartment_id" value="<%= data1[0].id %>" placeholder="apartment" class="form-control">
+                <% } %>
+              </div>
+              <div class="form-group">
+                <label>หมายเลขห้อง </label> <a href="/room/new">เพิ่ม</a>
+                <select class="form-control" name="room_id">
+                  <option>กรุณาเลือก</option>
+                  <% if(data2){ %>
+                  <%  for(var i=0; i<data2.length; i++){ %>
+                      <option value="<%= data2[i].id %>" <% if(data4) if(data2[i].id == data4[0].room_id){ %> selected <% } %>> <%= data2[i].name %> </option>
+                   <%}%>
+                  <%}%>
+                </select>
+              </div>
+              <div class="form-group">
+            <label>หน่วยไฟ </label>
+            <% if(data4){ %>
+            <input type="text" name="unit" value="<%= data4[0].unit %>"  class="form-control">
+          <% } else { %>
+            <input type="text" name="unit" value="" placeholder="หน่วยไฟ" class="form-control">
+          <% } %>
+          </div>
+          <div class="form-group">
+        <label>เดือน </label>
+        <% if(data4){ %>
+        <input type="text" name="month" value="<%= data4[0].month %>"  class="form-control">
+      <% } else { %>
+        <input type="text" name="month" value="" placeholder="กรอก 1-12" class="form-control">
+      <% } %>
+      </div>
+        <div class="form-group">
+        <label>ปี </label>
+        <% if(data4){ %>
+          <input type="text" name="year" value="<%= data4[0].year %>"  class="form-control">
+          <% } else { %>
+            <input type="text" name="year" value="" placeholder="กรอก 2000" class="form-control">
+            <% } %>
+          </div>
+          <div class="form-group">
+          <label>วันที่บันทึก </label>
+          <% if(data4){ %>
+            <input type="date" name="date" value="<%= data4[0].date  %>"  class="form-control">
+            <% } else { %>
+              <input type="date" name="date" value="" placeholder="วันที่บันทึก" class="form-control">
+              <% } %>
+            </div>
+          <div style ="text-align:center">
+          <button type="submit" class="btn btn-success">[บันทึก]</button>
+          <a href="/wi/new" class="btn btn-warning">[แก้ไข]</a>
+          </div>
+        </form>
+            </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% include _footer %>

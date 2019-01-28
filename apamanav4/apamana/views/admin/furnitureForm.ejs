@@ -1,0 +1,80 @@
+<% include _header %>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-9">
+          <% if (data4) { %>
+            <form  action="/admin/furniture/update/<%=data4[0].id %>" method="post">
+              <% }else { %>
+            <form action="/admin/furniture/add" method="post">
+        <%  }  %>
+
+
+        <div class="form-group">
+          <label> ชื่ออพาร์ทเมนท์ </label> <a href="/admin/apartment/new"> เพื่ม </a>
+          <select class="form-control" name="apartment_id">
+            <option> กรุณาเลือก </option>
+            <% if(data3) { %>
+              <% for(var i=0;i<data3.length;i++){ %>
+              <option value="<%= data3[i].id %>" <% if(data4) if(data3[i].id==data4[0].apartment_id){ %> selected <% } %>> <%= data3[i].name %> </option>
+            <%    }    %>
+          <%     }  %>
+          </select>
+
+        </div>
+
+
+
+<div class="form-group">
+  <label> หมายเลขห้อง  </label> <a href="/admin/room/new"> เพื่ม </a>
+  <select class="form-control" name="room_id">
+    <option> กรุณาเลือก </option>
+    <% if(data1) { %>
+      <% for(var i=0;i<data1.length;i++){ %>
+      <option value="<%= data1[i].id %>" <% if(data4) if(data1[i].id==data4[0].room_id){ %> selected <% } %>> <%= data1[i].name %> </option>
+    <%    }    %>
+  <%     }  %>
+  </select>
+
+</div>
+
+<div class="form-group">
+  <label>  เฟอร์นิเจอร์ </label>
+ <% if (data4) { %>
+    <input type="text" name="name" value="<%= data4[0].name %>" placeholder="name"  class="form-control">
+      <% } else { %>
+      <input type="text" name="name" placeholder="เฟอร์นิเจอร์" class="form-control">
+<% } %>
+</div>
+
+
+<div class="form-group">
+  <label>  ประเภทเฟอร์นิเจอร์ (Type) </label> <a href="/admin/furnituretype/new"> เพื่ม </a>
+  <select class="form-control" name="furnituretype_id">
+    <option> กรุณาเลือก </option>
+    <% if(data2) { %>
+      <% for(var i=0;i<data2.length;i++){ %>
+      <option value="<%= data2[i].id %>" <% if(data4) if(data2[i].id==data4[0].furnituretype_id){ %> selected <% } %>> <%= data2[i].name %> </option>
+    <%    }    %>
+  <%     }  %>
+  </select>
+
+</div>
+
+
+
+
+
+<div style ="text-align:center">
+<button type="submit" class="btn btn-success">[บันทึก]</button>
+<a href="/admin/furniture/new" class="btn btn-warning">[แก้ไข]</a>
+</div>
+                    </form>
+                    </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<% include _footer %>

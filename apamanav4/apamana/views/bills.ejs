@@ -1,0 +1,57 @@
+<% include _header%>
+  <h4 align="center"><u>บิล(bill)</u></h4>
+
+        <div style ="text-align:left">
+        <a href="/bill/new" class="btn btn-primary">สร้าง</a>
+        <div class="form-group">
+        <table class="table table-bordered table-hover ">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>ชื่ออพาร์ทเมนท์</th>
+              <th>หมายเลขห้อง</th>
+              <th>ชื่อผู้เช่า</th>
+              <th>ค่าอินเตอร์เน็ต</th>
+              <th>ค่าไฟ</th>
+              <th>ค่าน้ำ</th>
+              <th>ค่าขยะ</th>
+              <th>ราคารวม</th>
+              <th>ค่าปรับ</th>
+              <th>เดือน</th>
+              <th>ปี</th>
+              <th>วันที่ออกบิล</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <% if (data) { %>
+              <% for(var i=0; i<data.length; i++) { %>
+                <tr>
+                  <td> <%= (i+1) %> </td>
+                  <td> <%= data[i].Apname %> </td>
+                  <td> <%= data[i].Rname %> </td>
+                  <td> <%= data[i].Cname %> </td>
+                  <td> <%= data[i].internetprice  %> </td>
+                  <td> <%= data[i].electricprice  %> </td>
+                  <td> <%= data[i].waterprice  %> </td>
+                  <td> <%= data[i].trashprice  %> </td>
+                  <td> <%= data[i].roomprice  %> </td>
+                  <td> <%= data[i].fine  %> </td>
+                  <td> <%= data[i].month  %> </td>
+                  <td> <%= data[i].year  %> </td>
+                  <td> <%= new Date(data[i].date).toLocaleDateString().split('T')[0] %> </td>
+                  <td>
+                    <a href="/bill/delete/<%= data[i].No %>" class="btn btn-primary"> Delete </a>
+                    <a href="/bill/update/<%= data[i].No %>" class="btn btn-info"> Update </a>
+                    <a href="/listelewa/printbill/<%= data[i].No %>" class="btn btn-primary"> [พิมพ์บิล] </a>
+                  </td>
+                </tr>
+              <% } %>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+<% include _footer%>

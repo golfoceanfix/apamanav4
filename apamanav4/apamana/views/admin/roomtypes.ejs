@@ -1,0 +1,39 @@
+<% include _header%>
+  <h4 align="center"><u>ประเภทห้องพัก (ROOMTYPE)</u></h4>
+  <div class="container">
+    <div class="row mt-5">
+      <div class="col-md-9">
+
+        <a href="/admin/roomtype/new" class="btn btn-primary">ADD</a>
+        <table class="table table-bordered table-hover ">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>ประเภทห้องพัก</th>
+              <th>รายละเอียด</th>
+              <th>อพาร์ทเมนท์</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if (data) { %>
+              <% for(var i=0; i<data.length; i++) { %>
+                <tr>
+                  <td> <%= (i+1) %> </td>
+                  <td> <%= data[i].Name %> </td>
+                  <td> <%= data[i].detail %> </td>
+                  <td> <%= data[i].Apname %> </td>
+
+                  <td>
+                    <a href="/admin/roomtype/delete/<%= data[i].No %>" class="btn btn-danger"> Delete </a>
+                    <a href="/admin/roomtype/update/<%= data[i].No %>" class="btn btn-info"> Update </a>
+                  </td>
+                </tr>
+              <% } %>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+<% include _footer%>

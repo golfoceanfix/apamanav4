@@ -1,0 +1,73 @@
+<% include _header %>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-7">
+      <div class="card">
+        <div class="card-body">
+            <% if(data4) { %>
+              <form action="/repair/update/<%=data4[0].id%>" method="post">
+            <% } else { %>
+              <form action="/repair/add" method="post">
+            <% } %>
+
+            <div class="form-group" hidden>
+              <label>apartment</label>
+              <% if(data1){ %>
+                <input type="text" name="apartment_id" value="<%= data1[0].id %>" class="form-control">
+              <% } else { %>
+                <input type="text" name="apartment_id" value="<%= data1[0].id %>" placeholder="apartment" class="form-control">
+              <% } %>
+            </div>
+              <div class="form-group">
+                <label>หมายเลขห้อง </label> <a href="/room/new">เพิ่ม</a>
+                <select class="form-control" name="room_id">
+                  <option>กรุณาเลือก</option>
+                  <% if(data2){ %>
+                  <%  for(var i=0; i<data2.length; i++){ %>
+                      <option value="<%= data2[i].id %>" <% if(data4) if(data2[i].id == data4[0].room_id){ %> selected <% } %>> <%= data2[i].name %> </option>
+                   <%}%>
+                  <%}%>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>ประเภทอุปกรณ์ </label> <a href="/repairtype/new">เพิ่ม</a>
+                <select class="form-control" name="repairtype_id">
+                  <option>กรุณาเลือก</option>
+                  <% if(data3){ %>
+                  <%  for(var i=0; i<data3.length; i++){ %>
+                      <option value="<%= data3[i].id %>" <% if(data4) if(data3[i].id == data4[0].repairtype_id){ %> selected <% } %>> <%= data3[i].name %> </option>
+                   <%}%>
+                  <%}%>
+                </select>
+              </div>
+            <div class="form-group">
+            <label>วันทีแจ้งซ่อม </label>
+            <% if(data4){ %>
+            <input type="date" name="date_notify" value="<%= (data4[0].date_notify).toLocaleDateString().split("T")[0] %> "  class="form-control">
+            <% } else { %>
+            <input type="date" name="date_notify" value="<%=new Date().toISOString().split('T')[0]%>" placeholder="วันที่แจ้งซ่อม" class="form-control">
+            <% } %>
+              </div>
+                <div class="form-group">
+                  <label>สถานะ </label>
+                  <% if(data4){ %>
+                  <input type="text" name="status" value="<%= data4[0].status %>"  class="form-control">
+                <% } else { %>
+                  <input type="text" name="status" value="" placeholder="" class="form-control">
+                <% } %>
+              </div>
+              <div style ="text-align:center">
+              <button type="submit" class="btn btn-success">[บันทึก]</button>
+              <a href="/repair/new" class="btn btn-warning">[แก้ไข]</a>
+              </div>
+            </form>
+            </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% include _footer %>

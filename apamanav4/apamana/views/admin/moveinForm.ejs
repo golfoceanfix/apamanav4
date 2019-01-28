@@ -1,0 +1,76 @@
+<% include _header %>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-7">
+      <div class="card">
+        <div class="card-body">
+            <% if(data4) { %>
+              <form action="/admin/movein/update/<%=data4[0].id%>" method="post">
+            <% } else { %>
+              <form action="/admin/movein/add" method="post">
+            <% } %>
+
+              <div class="form-group">
+                <label>apartment</label> <a href="/admin/apartment/new">เพิ่ม</a>
+                <select class="form-control" name="apartment_id">
+                  <option>กรุณาเลือก</option>
+                  <% if(data1){ %>
+                  <%  for(var i=0; i<data1.length; i++){ %>
+                      <option value="<%= data1[i].id %>" <% if(data4) if(data1[i].id == data4[0].apartment_id){ %> selected <% } %>> <%= data1[i].name %> </option>
+                   <%}%>
+                  <%}%>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>หมายเลขห้อง </label> <a href="/admin/room/new">เพิ่ม</a>
+                <select class="form-control" name="room_id">
+                  <option>กรุณาเลือก</option>
+                  <% if(data2){ %>
+                  <%  for(var i=0; i<data2.length; i++){ %>
+                      <option value="<%= data2[i].id %>" <% if(data4) if(data2[i].id == data4[0].room_id){ %> selected <% } %>> <%= data2[i].name %> </option>
+                   <%}%>
+                  <%}%>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>ชื่อผู้ทำสัญญา </label> <a href="/admin/customer/new">เพิ่ม</a>
+                <select class="form-control" name="contact_id">
+                  <option>กรุณาเลือก</option>
+                  <% if(data3){ %>
+                  <%  for(var i=0; i<data3.length; i++){ %>
+                      <option value="<%= data3[i].id %>" <% if(data4) if(data3[i].id == data4[0].contact_id){ %> selected <% } %>> <%= data3[i].name %> </option>
+                   <%}%>
+                  <%}%>
+                </select>
+              </div>
+            <div class="form-group">
+            <label>วันที่ย้ายเข้า </label>
+            <% if(data4){ %>
+            <input type="date" name="date" value="<%= new Date(data4[0].date).toLocaleDateString('thai',{ day:'2-digit',month:'2-digit',year:'numeric'})%>"  class="form-control">
+            <% } else { %>
+            <input type="date" name="date" value="<%= new Date().toLocaleDateString('thai',{ day:'2-digit',month:'2-digit',year:'numeric'})%>" placeholder="วันที่ทำสัญญา" class="form-control">
+            <% } %>
+              </div>
+              <div class="form-group">
+            <label>สถานะ </label>
+            <% if(data4){ %>
+            <input type="text" name="status" value="<%= data4[0].status  %>"  class="form-control">
+          <% } else { %>
+            <input type="text" name="status" value="" placeholder="สถานะ" class="form-control">
+          <% } %>
+          </div>
+          <div style ="text-align:center">
+          <button type="submit" class="btn btn-success">[บันทึก]</button>
+          <a href="/admin/movein/new" class="btn btn-warning">[แก้ไข]</a>
+          </div>
+</form>
+            </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% include _footer %>

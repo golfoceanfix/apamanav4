@@ -1,0 +1,59 @@
+<% include _header %>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-7">
+
+      <% if(data2) { %>
+        <form action="/admin/utility/update/<%= data2[0].id %>" method="post">
+      <%  }else { %>
+        <form action="/admin/utility/add" method="post">
+    <%  } %>
+
+    <div class="form-group">
+      <% if(data2){ %>
+        <input type="text" name="name" value="<%= data2[0].name %>" class="form-control">
+      <% }else { %>
+      <input type="text" name="name" placeholder="Name" class="form-control">
+    <% } %>
+    </div>
+
+
+    <div class="form-group">
+          <label> package </label>
+          <select class="form-control" name="package">
+            <option> กรุณาเลือกประเภท </option>
+            <option value="0"  > ราคาต่อหน่วย </option>
+            <option value="1"  > เหมาจ่าย </option>
+
+          </select>
+        </div>
+
+    <div class="form-group">
+      <% if(data2){ %>
+        <input type="text" name="price" value="<%= data2[0].price %>" class="form-control">
+      <% }else { %>
+      <input type="text" name="price" placeholder="Price" class="form-control">
+    <% } %>
+    </div>
+
+    <div class="form-group">
+          <label> APRTMENT </label> <a href="/admin/apartment/new"> เพิ่ม </a>
+          <select class="form-control" name="apartment_id">
+            <option> กรุณาเลือกห้อง </option>
+            <% if(data1) {%>
+            <% for(var i=0;i<data1.length;i++){ %>
+              <option value="<%= data1[i].id %>" <% if(data2) if(data1[i].id==data2[0].apartment_id) { %> selected <% } %> > <%=data1[i].name %> </option>
+            <% } %>
+            <% } %>
+          </select>
+    </div>
+
+      <button type="submit" class="btn btn-primary">Add Utility</button>
+      </form>
+
+      </div>
+      </div>
+      </div>
+
+<% include _footer %>

@@ -1,0 +1,78 @@
+<% include _header%>
+  <h4 align="center"><u>ค่าไฟ (monthlyelectric)</u></h4>
+
+  <div class="container">
+    <div class="row mt-5">
+      <div class="col-md-12">
+        <div class="col-sm-2">
+        <div class="row">
+          <form action="/monthlyelectric1" method="post">
+        <div class="form-group">
+
+             <select class="form-control" name="month">
+                <option> กรุณาเลือกเดือน </option>
+                <option value="1"  > มกราคม </option>
+                <option value="2"  > กุมภาพันธ์ </option>
+                <option value="3"  > มีนาคม </option>
+                <option value="4"  > เมษายน </option>
+                <option value="5"  > พฤษภาคม </option>
+                <option value="6"  > มิถุนายน </option>
+                <option value="7"  > กรกฏาคม </option>
+                <option value="8"  > สิงหาคม </option>
+                <option value="9"  > กันยายน </option>
+                <option value="10"  > ตุลาคม </option>
+                <option value="11"  > พฤจิกายน </option>
+                <option value="12"  > ธันวาคม </option>
+
+              </select>
+              <select class="form-control" name="year">
+                 <option> กรุณาเลือกปี </option>
+                 <option value="2018"  > 2018 </option>
+                 <option value="2019"  > 2019</option>
+                 <option value="2020"  > 2020 </option>
+                 <option value="2021"  > 2021 </option>
+                 <option value="2022"  > 2022 </option>
+
+               </select>
+
+                <button type="submit" class="btn btn-primary">ค้นหา</button>
+                </div>
+                </form>
+              </div>
+            </div>
+        <table class="table table-bordered table-hover ">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>ชื่ออพาร์ทเมนท์</th>
+              <th>หมายเลขห้อง</th>
+              <th>ราคา</th>
+              <th>เดือน</th>
+              <th>ปี</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if (data) { %>
+              <% for(var i=0; i<data1.length; i++) { %>
+                <tr>
+                  <td> <%= (i+1) %> </td>
+                  <td> <%= data1[i].Apname %> </td>
+                  <td> <%= data1[i].Rname %> </td>
+                  <td> <input type="text" name="unit" value=""> </td>
+                  <td> <input type="text" name="month" value="<%= data1[i].month1 %>"> </td>
+                  <td>  <input type="text" name="year" value="<%= data1[i].year1 %>"> </td>
+                  <td>
+                    <a href="/monthlyelectric/delete/<%= data[i].No %>" class="btn btn-danger"> Delete </a>
+                    <a href="/monthlyelectric/update/<%= data[i].No %>" class="btn btn-info"> Update </a>
+                  </td>
+                </tr>
+              <% } %>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+<% include _footer%>

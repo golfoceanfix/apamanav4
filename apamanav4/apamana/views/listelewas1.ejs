@@ -1,0 +1,44 @@
+
+<% include _header %>
+  <h4 align="center"><u>รายละเอียด/เดือน</u></h4>
+  <div class="card-body">
+<div class="container">
+  <div class="row mt-5">
+
+    <div class="col-lg-12">
+      <table Class="table table-bordered table-haver">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>หมายเลขห้อง</th>
+            <th>ชื่ออพาร์ทเมนท์</th>
+            <th>หน่วยไฟ</th>
+            <th>หน่วยน้ำ</th>
+            <th>เดือน</th>
+            <th>ปี</th>
+            <th>Action </th>
+          </tr>
+        </thead>
+        <tbody>
+              <%  if(data){ %>
+                  <% for(var i = 0 ; i <data.length; i++){ %>
+                    <tr>
+                      <td> <%= (i+1) %> </td>
+                      <td> <%= data[i].Rname %> </td>
+                      <td> <%= data[i].Apname %> </td>
+                      <td> <%= data[i].Elunit %> </td>
+                      <td> <%= data[i].Waunit %> </td>
+                      <td> <%= data[i].month %> </td>
+                      <td> <%= data[i].year %> </td>
+                      <td>
+                      </td>
+                    </tr>
+                <%  } %>
+              <%  } %>
+            </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<% include _footer %>

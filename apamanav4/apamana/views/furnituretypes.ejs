@@ -1,0 +1,38 @@
+<% include _header%>
+  <h4 align="center"><u>ประเภทเฟอร์นิเจอร์</u></h4>
+  <div class="container">
+    <div class="row mt-5">
+      <div class="col-md-9">
+
+        <a href="/furnituretype/new" class="btn btn-primary">ADD</a>
+        <table class="table table-bordered table-hover ">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>ประเภทเฟอร์นิเจอร์</th>
+              <th>รายละเอียด</th>
+              <th>ชื่ออพาร์ทเมนท์</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if (data) { %>
+              <% for(var i=0; i<data.length; i++) { %>
+                <tr>
+                  <td> <%= (i+1) %> </td>
+                  <td> <%= data[i].FTname %> </td>
+                  <td> <%= data[i].detail %> </td>
+                  <td> <%= data[i].Apname  %> </td>
+                  <td>
+                    <a href="/furnituretype/delete/<%= data[i].No %>" class="btn btn-danger"> Delete </a>
+                    <a href="/furnituretype/update/<%= data[i].No %>" class="btn btn-info"> Update </a>
+                  </td>
+                </tr>
+              <% } %>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+<% include _footer%>

@@ -1,0 +1,138 @@
+<% include _header %>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-7">
+      <div class="card">
+        <div class="card-body">
+            <% if(data4) { %>
+              <form action="/bill/update/<%=data4[0].id%>" method="post">
+            <% } else { %>
+              <form action="/bill/add" method="post">
+            <% } %>
+
+            <div class="form-group" hidden>
+              <label>apartment</label>
+              <% if(data1){ %>
+                <input type="text" name="apartment_id" value="<%= data1[0].id %>" class="form-control">
+              <% } else { %>
+                <input type="text" name="apartment_id" value="<%= data1[0].id %>" placeholder="apartment" class="form-control">
+              <% } %>
+            </div>
+            <div class="form-group">
+              <label>หมายเลขห้อง </label> <a href="/room/new">เพิ่ม</a>
+              <select class="form-control" name="room_id">
+                <option>กรุณาเลือก</option>
+                <% if(data2){ %>
+                <%  for(var i=0; i<data2.length; i++){ %>
+                    <option value="<%= data2[i].id %>" <% if(data4) if(data2[i].id == data4[0].room_id){ %> selected <% } %>> <%= data2[i].name %> </option>
+                 <%}%>
+                <%}%>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>ชื่อผู้ทำสัญญา </label> <a href="/customer/new">เพิ่ม</a>
+              <select class="form-control" name="contract_id">
+                <option>กรุณาเลือก</option>
+                <% if(data3){ %>
+                <%  for(var i=0; i<data3.length; i++){ %>
+                    <option value="<%= data3[i].id %>" <% if(data4) if(data3[i].id == data4[0].contract_id){ %> selected <% } %>> <%= data3[i].name %> </option>
+                 <%}%>
+                <%}%>
+              </select>
+            </div>
+              <div class="form-group"hidden>
+                <label>ค่าอินเตอร์เน็ต</label>
+                <% if(data4){ %>
+                <input type="text" name="internetprice" value="<%= data4[0].internetprice  %>"  class="form-control">
+              <% } else { %>
+                <input type="text" name="internetprice" value="" placeholder="ค่าอินเตอร์เน็ต" class="form-control">
+              <% } %>
+            </div>
+                <div class="form-group">
+                  <label>ค่าไฟ</label>
+                  <% if(data4){ %>
+                  <input type="text" name="electricprice" value="<%= data4[0].electricprice  %>"  class="form-control">
+                <% } else { %>
+                  <input type="text" name="electricprice" value="" placeholder="ค่าไฟ" class="form-control">
+                <% } %>
+                  </div>
+
+                      <div class="form-group">
+                    <label>ค่าน้ำ </label>
+                    <% if(data4){ %>
+                    <input type="text" name="waterprice" value="<%= data4[0].waterprice %>"  class="form-control">
+                  <% } else { %>
+                    <input type="text" name="waterprice" value="" placeholder="ค่าน้ำ" class="form-control">
+                  <% } %>
+                  </div>
+                  <div class="form-group"hidden>
+                <label>ค่าซ่อมบำรุง </label>
+                <% if(data4){ %>
+                <input type="text" name="serviceprice" value="<%= data4[0].serviceprice %>"  class="form-control">
+              <% } else { %>
+                <input type="text" name="serviceprice" value="" placeholder="ค่าซ่อมบำรุง" class="form-control">
+              <% } %>
+              </div>
+              <div class="form-group"hidden>
+            <label>ค่าขยะ </label>
+            <% if(data4){ %>
+            <input type="text" name="trashprice" value="<%= data4[0].trashprice %>"  class="form-control">
+          <% } else { %>
+            <input type="text" name="trashprice" value="" placeholder="ค่าขยะ" class="form-control">
+          <% } %>
+          </div>
+          <div class="form-group">
+        <label>รวมค่าห้อง </label>
+        <% if(data4){ %>
+        <input type="text" name="roomprice" value="<%= data4[0].roomprice %>"  class="form-control">
+      <% } else { %>
+        <input type="text" name="roomprice" value="" placeholder="ค่าขยะ" class="form-control">
+      <% } %>
+      </div>
+      <div class="form-group">
+    <label>ค่าปรับ </label>
+    <% if(data4){ %>
+    <input type="text" name="fine" value="<%= data4[0].fine %>"  class="form-control">
+  <% } else { %>
+    <input type="text" name="fine" value="" placeholder="ค่าปรับ" class="form-control">
+  <% } %>
+  </div>
+  <div class="form-group">
+<label>เดือน </label>
+<% if(data4){ %>
+<input type="text" name="month" value="<%= data4[0].month %>"  class="form-control">
+<% } else { %>
+<input type="text" name="month" value="" placeholder="กรอก 1-12" class="form-control">
+<% } %>
+</div>
+<div class="form-group">
+<label>ปี </label>
+<% if(data4){ %>
+<input type="text" name="year" value="<%= data4[0].year %>"  class="form-control">
+<% } else { %>
+<input type="text" name="year" value="" placeholder="กรอก 2000" class="form-control">
+<% } %>
+</div>
+<div class="form-group">
+<label>วันที่ออกบิล </label>
+<% if(data4){ %>
+<input type="date" name="date" value="<%= (data4[0].date).toLocaleDateString().split("T")[0] %>"  class="form-control">
+<% } else { %>
+<input type="date" name="date" value="<%=new Date().toISOString().split('T')[0]%>" placeholder="วันที่ออกบิล" class="form-control">
+<% } %>
+</div>
+
+                    <div style ="text-align:center">
+              <button type="submit" class="btn btn-success">[บันทึก]</button>
+                <a href="/bill/new" class="btn btn-warning">[แก้ไข]</a>
+                </div>
+            </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% include _footer %>

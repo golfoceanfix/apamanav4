@@ -1,0 +1,85 @@
+<% include _header %>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-7">
+      <div class="card">
+        <div class="card-body">
+            <% if(data3) { %>
+              <form action="/pay/update/<%=data3[0].id%>" method="post">
+            <% } else { %>
+              <form action="/pay/add" method="post">
+            <% } %>
+            <div class="form-group">
+              <label>หมายเลขห้อง </label> <a href="/bill/new">เพิ่ม</a>
+              <select class="form-control" name="bill_id">
+                <option>กรุณาเลือก</option>
+                <% if(data2){ %>
+                <%  for(var i=0; i<data2.length; i++){ %>
+                    <option value="<%= data2[i].bid %>" <% if(data3) if(data2[i].bid == data3[0].bill_id){ %> selected <% } %>> <%= data2[i].Rname %> </option>
+                 <%}%>
+                <%}%>
+              </select>
+            </div>
+            <div class="form-group" hidden>
+              <label>apartment</label>
+              <% if(data1){ %>
+                <input type="text" name="apartment_id" value="<%= data1[0].id %>" class="form-control">
+              <% } else { %>
+                <input type="text" name="apartment_id" value="<%= data1[0].id %>" placeholder="apartment" class="form-control">
+              <% } %>
+            </div>
+            <div class="form-group">
+            <label>วันที่ชำระ </label>
+            <% if(data3){ %>
+            <input type="date" name="date" value="<%= data3[0].date.toLocaleDateString('thai',{ day:'2-digit',month:'2-digit',year:'numeric'})%>"  class="form-control">
+            <% } else { %>
+            <input type="date" name="date" value="<%= new Date().toLocaleDateString('thai',{ day:'2-digit',month:'2-digit',year:'numeric'})%>" placeholder="วันที่ทำสัญญา" class="form-control">
+            <% } %>
+              </div>
+                <div class="form-group">
+                  <label>ค่าปรับ</label>
+                  <% if(data3){ %>
+                  <input type="text" name="fine" value="<%= data3[0].fine %>"  class="form-control">
+                <% } else { %>
+                  <input type="text" name="fine" value="" placeholder="ค่าปรับ" class="form-control">
+                <% } %>
+                  </div>
+                  <div class="form-group">
+                  <label>กำหนดชำระเงิน </label>
+                  <% if(data3){ %>
+                  <input type="text" name="appointment" value="<%= data3[0].appointment %>"  class="form-control">
+                <% } else { %>
+                  <input type="text" name="appointment" value="" placeholder="กำหนดชำระเงิน" class="form-control">
+                <% } %>
+                    </div>
+                      <div class="form-group">
+                    <label>ราคารวม</label>
+                    <% if(data3){ %>
+                    <input type="text" name="amount" value="<%= data3[0].amount  %>"  class="form-control">
+                  <% } else { %>
+                    <input type="text" name="amount" value="" placeholder="ราคารวม" class="form-control">
+                  <% } %>
+                  </div>
+                  <div class="form-group">
+                <label>สถานะ </label>
+                <% if(data3){ %>
+                <input type="text" name="status" value="<%= data3[0].status %>"  class="form-control">
+              <% } else { %>
+                <input type="text" name="status" value="" placeholder="สถานะ" class="form-control">
+              <% } %>
+              </div>
+
+              <div style ="text-align:center">
+              <button type="submit" class="btn btn-success">[บันทึก]</button>
+              <a href="/pay/new" class="btn btn-warning">[แก้ไข]</a>
+              </div>
+            </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% include _footer %>

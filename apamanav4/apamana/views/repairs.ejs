@@ -1,0 +1,95 @@
+<% include _header%>
+<div class="card border-info mb-3"">
+  <div class="card-header"> <h4 align="center"> แจ้งซ่อม </h4></div>
+  <div class="card-body">
+      <div class="row mt-3">
+
+        <a href="/repair/new" class="btn btn-primary">ADD</a>
+        <table Class="table table-bordered table-haver">
+
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>ชื่ออพาร์ทเมนท์</th>
+              <th>หมายเลขห้อง</th>
+              <th>ประเภทอุปกรณ์</th>
+              <th>วันที่แจ้ง</th>
+              <th>สถานะ</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if (data) { %>
+              <% for(var i=0; i<data.length; i++) { %>
+
+                  <tr class="table-secondary">
+                    <%  if(data[i].Status == 0 ){ %>
+                      <form action="/repair/success/<%= data[i].No %>" method="post">
+                  <td> <%= (i+1) %> </td>
+                  <td> <%= data[i].Apname %> </td>
+                  <td> <%= data[i].Rname %> </td>
+                  <td> <%= data[i].Rpname %> </td>
+                  <td> <%= new Date(data[i].DateN).toLocaleDateString().split('T')[0] %> </td>
+                  <td>  <% if(data[i].Status == 1){ %> <span class="badge badge-success">ซ่อมแล้ว</span> <%  }  else { %> <span class="badge badge-danger"> ยังไม่ได้ซ่อม</span>  <% } %> </td>
+                  <td>
+                    <a href="/repair/delete/<%= data[i].No %>" class="btn btn-primary"> ลบ </a>
+                    <button type="submit" class="btn btn-success">ซ่อมแล้ว</button>
+                  </td>
+                    </form>
+                </tr>
+              <% } %>
+            <% } %>
+          <% } %>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="card border-info mb-3"">
+    <div class="card-header"> <h4 align="center"> ซ่อมแล้ว </h4></div>
+    <div class="card-body">
+        <div class="row mt-3">
+
+          <table Class="table table-bordered table-haver">
+
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>ชื่ออพาร์ทเมนท์</th>
+                <th>หมายเลขห้อง</th>
+                <th>ประเภทอุปกรณ์</th>
+                <th>วันที่แจ้ง</th>
+                <th>วันที่ซ่อม</th>
+                <th>สถานะ</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if (data) { %>
+                <% for(var i=0; i<data.length; i++) { %>
+                  <tr class="table-secondary">
+                     <%  if(data[i].Status == 1 ){ %>
+                    <td> <%= (i+1) %> </td>
+                    <td> <%= data[i].Apname %> </td>
+                    <td> <%= data[i].Rname %> </td>
+                    <td> <%= data[i].Rpname %> </td>
+                    <td> <%= new Date(data[i].DateN).toLocaleDateString().split('T')[0] %> </td>
+                    <td> <%= new Date(data[i].DateR).toLocaleDateString().split('T')[0] %> </td>
+                    <td>  <% if(data[i].Status == 1){ %> <span class="badge badge-success">ซ่อมแล้ว</span> <%  }  else { %> <span class="badge badge-danger"> ยังไม่ได้ซ่อม</span>  <% } %> </td>
+                    <td>
+                      <a href="/repair/delete/<%= data[i].No %>" class="btn btn-danger"> Delete </a>
+                      <a href="/repair/update/<%= data[i].No %>" class="btn btn-info"> Update </a>
+                    </td>
+                  </tr>
+                <% } %>
+              <% } %>
+            <% } %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+<% include _footer%>

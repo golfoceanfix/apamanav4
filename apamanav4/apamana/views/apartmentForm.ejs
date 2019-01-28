@@ -1,0 +1,59 @@
+<% include _header %>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-9">
+      <div class="card">
+        <div class="card-body">
+          <% if ( data ) { %>
+          <form action="/apartment/update/<%= data.id %>" method="post">
+            <div class="form-group">
+              <input type="text" name="Name" value="<%= data.name %>" class="form-control">
+              </div>
+               <div class="form-group">
+               <input type="text" name="Address" value="<%= data.address %>" class="form-control">
+               </div>
+               <div class="form-group">
+               <input type="text" name="Tetephone" value="<%= data.tetephone %>" class="form-control">
+               </div>
+               <div class="form-group">
+               <input type="text" name="Admin_name" value="<%= data.admin_name %>" class="form-control">
+               </div>
+               <div class="form-group">
+               <input type="text" name="Admin_phone" value="<%= data.admin_phone %>" class="form-control">
+               </div>
+              <button type="Submit" class="btn btn-primary"> Save apartment </button>
+          </form>
+          <% }else{ %>
+            <div class="col-md-9">
+          <form action="/apartment/add" method="post">
+                      <div class="form-group">
+                        <input type="text" name="name" placeholder="Name" class="form-control">
+                        </div>
+                      <div class="form-group">
+                        <input type="text" name="address" placeholder="Address" class="form-control">
+                      </div>
+                      <div class="form-group">
+                        <input type="text" name="tetephone" placeholder="Tetephone" class="form-control">
+                      </div>
+                      <div class="form-group">
+                        <input type="text" name="admin_name" placeholder="Admin_name" class="form-control">
+                      </div>
+                      <div class="form-group">
+                        <input type="text" name="admin_phone" placeholder="Admin_phone" class="form-control">
+                      </div>
+                      <div style ="text-align:center">
+                      <button type="submit" class="btn btn-success">[บันทึก]</button>
+                      <a href="/apartment/new" class="btn btn-warning">[แก้ไข]</a>
+                      </div>
+                    </form>
+                    </div>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<% include _footer %>

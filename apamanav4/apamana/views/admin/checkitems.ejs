@@ -1,0 +1,42 @@
+<% include _header%>
+  <h4 align="center"><u>ตรวจสอบอุปกรณ์ในห้อง</u></h4>
+  <div class="container">
+    <div class="row mt-5">
+      <div class="col-md-15">
+
+        <a href="/admin/checkitem/new" class="btn btn-primary">ADD</a>
+        <table class="table table-bordered table-hover ">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>ชื่ออพาร์ทเมนท์</th>
+              <th>หมายเลขห้อง</th>
+              <th>ชื่อเฟอร์นิเจอร์</th>
+
+              <th>สถานะ</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if (data) { %>
+              <% for(var i=0; i<data.length; i++) { %>
+                <tr>
+                  <td> <%= (i+1) %> </td>
+                  <td> <%= data[i].Apname %> </td>
+                  <td> <%= data[i].Rname %> </td>
+                  <td> <%= data[i].Fname %> </td>
+
+                  <td> <%= data[i].Status %> </td>
+                  <td>
+                    <a href="/admin/checkitem/delete/<%= data[i].No %>" class="btn btn-danger"> Delete </a>
+                    <a href="/admin/checkitem/update/<%= data[i].No %>" class="btn btn-info"> Update </a>
+                  </td>
+                </tr>
+              <% } %>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+<% include _footer%>

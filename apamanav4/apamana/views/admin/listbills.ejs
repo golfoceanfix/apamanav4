@@ -1,0 +1,48 @@
+<% include _header%>
+  <h4 align="center"><u>บิลรายเดือน (listbill)</u></h4>
+  <div class="container">
+    <div class="row mt-5">
+      <div class="col-md-12">
+        <div style ="text-align:right">
+
+
+        <a href="/admin/monthlyelectric" class="btn btn-danger">[มิตเตอร์ไฟ]</a>
+        <a href="/admin/monthlywater" class="btn btn-info">[มิตเตอร์น้ำ]</a>
+
+        <table class="table table-bordered table-hover ">
+
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>ชื่ออพาร์ทเมนท์</th>
+              <th>หมายเลขห้อง</th>
+              <th>ประเภทห้องพัก</th>
+              <th>ราคาค่าห้อง</th>
+
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if (data) { %>
+              <% for(var i=0; i<data.length; i++) { %>
+                <tr>
+                  <td> <%= (i+1) %> </td>
+                  <td> <%= data[i].Aname %> </td>
+                  <td> <%= data[i].Name %> </td>
+                  <td> <%= data[i].Rname %> </td>
+                  <td> <%= data[i].Price %> </td>
+
+
+                  <td>
+                    <a href="/admin/listbill/delete/<%= data[i].No %>" class="btn btn-primary"> Delete </a>
+                    <a href="/admin/listbill/update/<%= data[i].No %>" class="btn btn-info"> Update </a>
+                  </td>
+                </tr>
+              <% } %>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+<% include _footer%>

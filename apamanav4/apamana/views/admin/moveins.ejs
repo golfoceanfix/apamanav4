@@ -1,0 +1,42 @@
+<% include _header%>
+  <h4 align="center"><u>เข้าอยู่</u></h4>
+  <div class="container">
+    <div class="row mt-5">
+      <div class="col-md-15">
+
+        <a href="/admin/movein/new" class="btn btn-primary">ADD</a>
+        <table class="table table-bordered table-hover ">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>ชื่ออพาร์ทเมนท์</th>
+              <th>หมายเลขห้อง</th>
+              <th>ชืิ่อผู้ทำสัญญา</th>
+              <th>วันที่เข้าอยู่</th>
+              <th>สถานะ</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if (data) { %>
+              <% for(var i=0; i<data.length; i++) { %>
+                <tr>
+                  <td> <%= (i+1) %> </td>
+                  <td> <%= data[i].Apname %> </td>
+                  <td> <%= data[i].Rname %> </td>
+                  <td> <%= data[i].Cname %> </td>
+                  <td> <%= new Date(data[i].Date).toLocaleDateString().split('T')[0] %> </td>
+                  <td> <%= data[i].Status %> </td>
+                  <td>
+                    <a href="/admin/movein/delete/<%= data[i].No %>" class="btn btn-danger"> Delete </a>
+                    <a href="/admin/movein/update/<%= data[i].No %>" class="btn btn-info"> Update </a>
+                  </td>
+                </tr>
+              <% } %>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+<% include _footer%>

@@ -1,0 +1,63 @@
+<% include _header %>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-7">
+      <div class="card">
+        <div class="card-body">
+            <% if(data2) { %>
+              <form action="/admin/user/update/<%=data2[0].id%>" method="post">
+            <% } else { %>
+              <form action="/admin/user/add" method="post">
+            <% } %>
+
+              <div class="form-group">
+                <label>ชื่อหอพัก (Apartment)</label> <a href="/admin/apartment/new">เพิ่ม</a>
+                <select class="form-control" name="apartment_id">
+                  <option>กรุณาเลือก</option>
+                  <% if(data1){ %>
+                  <%  for(var i=0; i<data1.length; i++){ %>
+                      <option value="<%= data1[i].id %>" <% if(data2) if(data1[i].id == data2[0].apartment_id){ %> selected <% } %>> <%= data1[i].name %> </option>
+                   <%}%>
+                  <%}%>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>ชื่อเจ้าของหอพัก</label>
+                <% if(data2){ %>
+                  <input type="text" name="name" value="<%= data2[0].name %>"  class="form-control">
+                <% } else { %>
+                  <input type="text" name="name" value="" placeholder="ชื่อเจ้าของหอพัก" class="form-control">
+                <% } %>
+              </div>
+              <div class="form-group">
+                <label>ชื่อผู้ใช้</label>
+                <% if(data2){ %>
+                  <input type="text" name="username" value="<%= data2[0].username %>"  class="form-control">
+                <% } else { %>
+                  <input type="text" name="username" value="" placeholder="ชื่อผู้ใช้" class="form-control">
+                <% } %>
+              </div>
+              <div class="form-group">
+                <label>รหัสผ่าน</label>
+                <% if(data2){ %>
+                  <input type="text" name="password" value="<%= data2[0].username %>"  class="form-control">
+                <% } else { %>
+                  <input type="text" name="password" value="" placeholder="รหัสผ่าน" class="form-control">
+                <% } %>
+              </div>
+
+
+              <div style ="text-align:center">
+        <button type="submit" class="btn btn-success">[บันทึก]</button>
+          <a href="/admin/user/new" class="btn btn-warning">[แก้ไข]</a>
+          </div>
+            </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% include _footer %>

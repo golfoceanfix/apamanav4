@@ -1,0 +1,129 @@
+<% include _header %>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-7">
+      <div class="card">
+        <div class="card-body">
+            <% if(data3) { %>
+              <form action="/admin/reserve/update/<%=data3[0].id%>" method="post">
+            <% } else { %>
+              <form action="/admin/reserve/add" method="post">
+            <% } %>
+
+              <div class="form-group">
+                <label>ชื่ออพาร์อพาร์ทเมนท์</label> <a href="/admin/apartment/new">เพิ่ม</a>
+                <select class="form-control" name="apartment_id">
+                  <option>กรุณาเลือก</option>
+                  <% if(data1){ %>
+                  <%  for(var i=0; i<data1.length; i++){ %>
+                      <option value="<%= data1[i].id %>" <% if(data3) if(data1[i].id == data3[0].apartment_id){ %> selected <% } %>> <%= data1[i].name %> </option>
+                   <%}%>
+                  <%}%>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>หมายเลขห้อง</label> <a href="/admin/room/new">เพิ่ม</a>
+                <select class="form-control" name="room_id">
+                  <option>กรุณาเลือก</option>
+                  <% if(data2){ %>
+                  <%  for(var i=0; i<data2.length; i++){ %>
+                      <option value="<%= data2[i].id %>" <% if(data3) if(data2[i].id == data3[0].room_id){ %> selected <% } %>> <%= data2[i].name %> </option>
+                   <%}%>
+                  <%}%>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>ชื่อผู้จอง</label>
+                <% if(data3){ %>
+                <input type="text" name="name" value="<%= data3[0].name %>"  class="form-control">
+              <% } else { %>
+                <input type="text" name="name" value="" placeholder="name" class="form-control">
+              <% } %>
+            </div>
+
+              <div class="form-group">
+                <label>ที่อยู่</label>
+                <% if(data3){ %>
+                <input type="text" name="address" value="<%= data3[0].address  %>"  class="form-control">
+              <% } else { %>
+                <input type="text" name="address" value="" placeholder="ที่อยู่" class="form-control">
+              <% } %>
+            </div>
+                <div class="form-group">
+                  <label>เบอร์โทรศัพท์</label>
+                  <% if(data3){ %>
+                  <input type="text" name="phone" value="<%= data3[0].phone %>"  class="form-control">
+                <% } else { %>
+                  <input type="text" name="phone" value="" placeholder="0899999999" class="form-control">
+                <% } %>
+                  </div>
+                  <div class="form-group">
+                  <label>วันที่จอง </label>
+                  <% if(data3){ %>
+                  <input type="date" name="date_reserve" value="<%= (data3[0].date_reserve).toLocaleDateString().split("T")[0] %> "  class="form-control">
+                <% } else { %>
+                  <input type="date" name="date_reserve" value="<%=new Date().toISOString().split('T')[0]%>" placeholder="วันที่จอง" class="form-control">
+                <% } %>
+                    </div>
+                      <div class="form-group">
+                    <label>วันที่หมดจอง </label>
+                    <% if(data3){ %>
+                    <input type="date" name="date_outtime" value="<%= (data3[0].date_outtime).toLocaleDateString().split("T")[0] %>"  class="form-control">
+                  <% } else { %>
+                    <input type="date" name="date_outtime" value="<%=new Date().toISOString().split('T')[0]%>" placeholder="วันที่หมดจอง" class="form-control">
+                  <% } %>
+                  </div>
+                  <div class="form-group">
+                    <label>ราคาห้อง</label>
+                    <% if(data3){ %>
+                    <input type="text" name="room_price" value="<%= data3[0].room_price  %>"  class="form-control">
+                  <% } else { %>
+                    <input type="text" name="room_price" value="" placeholder="ราคาห้อง" class="form-control">
+                  <% } %>
+                    </div>
+                    <div class="form-group">
+                      <label>เงินจอง</label>
+                      <% if(data3){ %>
+                      <input type="text" name="balance_reserve" value="<%= data3[0].balance_reserve  %>"  class="form-control">
+                    <% } else { %>
+                      <input type="text" name="balance_reserve" value="" placeholder="เงินจอง" class="form-control">
+                    <% } %>
+                      </div>
+                      <div class="form-group">
+                        <label>สถานะ</label>
+                        <% if(data3){ %>
+                        <input type="text" name="status" value="<%= data3[0].status%>"  class="form-control">
+                      <% } else { %>
+                        <input type="text" name="status" value="" placeholder="สถานะ" class="form-control">
+                      <% } %>
+                        </div>
+                        <div class="form-group">
+                          <label>เลขบัตรประชาชน</label>
+                          <% if(data3){ %>
+                          <input type="text" name="id_card" value="<%= data3[0].id_card%>"  class="form-control">
+                        <% } else { %>
+                          <input type="text" name="id_card" value="" placeholder="13หลัก" class="form-control">
+                        <% } %>
+                          </div>
+                          <div class="form-group">
+                            <label>วันที่เข้าอยู่</label>
+                            <% if(data3){ %>
+                            <input type="date" name="date_in" value="<%= (data3[0].date_in).toLocaleDateString().split("T")[0] %>"  class="form-control">
+                          <% } else { %>
+                            <input type="date" name="date_in" value="<%=new Date().toISOString().split('T')[0]%>" placeholder="วันที่เข้าอยู่" class="form-control">
+                          <% } %>
+                            </div>
+                            <div style ="text-align:center">
+                            <button type="submit" class="btn btn-success">[บันทึก]</button>
+                            <a href="/admin/reserve/new" class="btn btn-warning">[แก้ไข]</a>
+                            </div>
+            </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% include _footer %>

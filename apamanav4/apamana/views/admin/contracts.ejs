@@ -1,0 +1,54 @@
+<% include _header%>
+  <h4 align="center"><u>สัญญา</u></h4>
+  <div class="container">
+    <div class="row mt-5">
+      <div class="col-md-15">
+
+        <a href="/admin/contract/new" class="btn btn-primary">ADD</a>
+        <table class="table table-bordered table-hover ">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>หมายเลขห้อง</th>
+              <th>ชื่ออพาร์ทเมนท์</th>
+              <th>ราคาห้อง</th>
+              <th>วันทำสัญญา</th>
+              <th>เงินประกัน</th>
+              <th>สัญญา/เดืิอน</th>
+              <th>ค่าไฟ/หน่วย</th>
+              <th>ค่าน้ำ/หน่วย</th>
+              <th>ชื่อผู้ทำสัญญา</th>
+              <th>สถานะ</th>
+              <th>วันหมดสัญญา</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if (data) { %>
+              <% for(var i=0; i<data.length; i++) { %>
+                <tr>
+                  <td> <%= (i+1) %> </td>
+                  <td> <%= data[i].Rname %> </td>
+                  <td> <%= data[i].Apname %> </td>
+                  <td> <%= data[i].Rprice %> </td>
+                  <td> <%= new Date(data[i].Cdate).toLocaleDateString().split('T')[0] %> </td>
+                  <td> <%= data[i].Bail %> </td>
+                  <td> <%= data[i].Mmonth %> </td>
+                  <td> <%= data[i].Emeter %> </td>
+                  <td> <%= data[i].Wmeter %> </td>
+                  <td> <%= data[i].Cname %> </td>
+                  <td> <%= data[i].Status %> </td>
+                  <td> <%= new Date(data[i].Edate).toLocaleDateString().split('T')[0] %> </td>
+                  <td>
+                    <a href="/admin/contract/delete/<%= data[i].No %>" class="btn btn-danger"> Delete </a>
+                    <a href="/admin/contract/update/<%= data[i].No %>" class="btn btn-info"> Update </a>
+                  </td>
+                </tr>
+              <% } %>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+<% include _footer%>

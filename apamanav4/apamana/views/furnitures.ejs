@@ -1,0 +1,41 @@
+<% include _header %>
+
+<h3 align="Center">   เฟอร์นิเจอร์ (Furniture)  </h3>
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-9">
+      <a href="/furniture/new" class = "btn btn-primary"> Add </a>
+
+
+      <table Class="table table-bordered table-haver">
+        <thead>
+          <tr>
+            <th>NO</th>
+            <th>ชื่ออพาร์ทเมนท์</th>
+            <th>หมายเลขห้อง</th>
+            <th>เฟอร์นิเจอร์</th>
+            <th>ประเภทเฟอร์นิเจอร์ </th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+              <%  if(data){ %>
+                  <% for(var i = 0 ; i <data.length; i++){ %>
+                    <tr>
+                      <td> <%= (i+1) %> </td>
+                      <td> <%= data[i].Apname %> </td>
+                      <td> <%= data[i].Rname %> </td>
+                      <td> <%= data[i].Fname %> </td>
+
+                      <td> <%= data[i].FTname %> </td>
+
+
+                      <td>
+                        <a href="/furniture/delete/<%= data[i].No %>" class="btn btn-danger"> Delete </a>
+                        <a href="/furniture/update/<%= data[i].No %>" class="btn btn-info"> Update </a>
+                      </td>
+                    </tr>
+                <%  } %>
+              <%  } %>
+            </tbody>
+        </table>

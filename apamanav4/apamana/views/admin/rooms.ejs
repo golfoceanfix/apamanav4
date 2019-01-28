@@ -1,0 +1,45 @@
+<% include _header%>
+  <h4 align="center"><u>ห้องพัก (ROOM)</u></h4>
+  <div class="container">
+    <div class="row mt-5">
+      <div class="col-md-12">
+
+        <a href="/admin/room/new" class="btn btn-primary">ADD</a>
+        <table class="table table-bordered table-hover ">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>หมายเลขห้อง</th>
+              <th>ชื่ออพาร์ทเมนท์</th>
+              <th>ประเภทห้อง</th>
+              <th>ราคา</th>
+              <th>ชั้น</th>
+              <th>รายละเอียดห้อง</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if (data) { %>
+              <% for(var i=0; i<data.length; i++) { %>
+                <tr>
+                  <td> <%= (i+1) %> </td>
+                  <td> <%= data[i].Name %> </td>
+                  <td> <%= data[i].Aname %> </td>
+                  <td> <%= data[i].Rname %> </td>
+                  <td> <%= data[i].Price %> </td>
+                  <td> <%= data[i].Floor %> </td>
+
+                  <td> <%= data[i].Detail %> </td>
+                  <td>
+                    <a href="/admin/room/delete/<%= data[i].No %>" class="btn btn-danger"> Delete </a>
+                    <a href="/admin/room/update/<%= data[i].No %>" class="btn btn-info"> Update </a>
+                  </td>
+                </tr>
+              <% } %>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+<% include _footer%>

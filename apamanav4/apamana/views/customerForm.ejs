@@ -1,0 +1,85 @@
+<% include _header %>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-7">
+      <div class="card">
+        <div class="card-body">
+            <% if(data2) { %>
+              <form action="/customer/update/<%=data2[0].id%>" method="post">
+            <% } else { %>
+              <form action="/customer/add" method="post">
+            <% } %>
+
+              <div class="form-group">
+                <label>บัตรประชาชน</label>
+                <% if(data2){ %>
+                <input type="text" name="id_card" value="<%= data2[0].id_card  %>"  class="form-control">
+              <% } else { %>
+                <input type="text" name="id_card" value="" placeholder="เลข13หลัก" class="form-control">
+              <% } %>
+            </div>
+
+              <div class="form-group">
+                <label>ชื่อผู้เช่า</label>
+                <% if(data2){ %>
+                <input type="text" name="name" value="<%= data2[0].name  %>"  class="form-control">
+              <% } else { %>
+                <input type="text" name="name" value="" placeholder="ชื่อผู้เช่า" class="form-control">
+              <% } %>
+             </div>
+                <div class="form-group">
+                  <label>ที่อยู่</label>
+                  <% if(data2){ %>
+                  <input type="text" name="address" value="<%= data2[0].address %>"  class="form-control">
+                <% } else { %>
+                  <input type="text" name="address" value="" placeholder="ที่อยู่" class="form-control">
+                <% } %>
+                  </div>
+                  <div class="form-group">
+                  <label>เบอร์โทรศัพท์ </label>
+                  <% if(data2){ %>
+                  <input type="text" name="phone" value="<%= data2[0].phone  %>"  class="form-control">
+                <% } else { %>
+                  <input type="text" name="phone" value="" placeholder="0899999999" class="form-control">
+                <% } %>
+
+                    </div>
+                      <div class="form-group">
+                    <label>ตำแหน่ง </label>
+                    <% if(data2){ %>
+                    <input type="text" name="position" value="<%= data2[0].position %>"  class="form-control">
+                  <% } else { %>
+                    <input type="text" name="position" value="" placeholder="ตำแหน่ง" class="form-control">
+                  <% } %>
+                  </div>
+                  <div class="form-group">
+                <label>หน่วยงาน </label>
+                <% if(data2){ %>
+                <input type="text" name="organize" value="<%= data2[0].organize  %>"  class="form-control">
+              <% } else { %>
+                <input type="text" name="organize" value="" placeholder="หน่วยงาน" class="form-control">
+              <% } %>
+              </div>
+              <div class="form-group" hidden>
+                <label>apartment</label>
+                <% if(data1){ %>
+                  <input type="text" name="apartment_id" value="<%= data1[0].id %>" class="form-control">
+                <% } else { %>
+                  <input type="text" name="apartment_id" value="<%= data1[0].id %>" placeholder="apartment" class="form-control">
+                <% } %>
+              </div>
+              <div style ="text-align:center">
+              <button type="submit" class="btn btn-success">[บันทึก]</button>
+              <a href="/customer/new" class="btn btn-warning">[แก้ไข]</a>
+              </div>
+            </form>
+            </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% include _footer %>

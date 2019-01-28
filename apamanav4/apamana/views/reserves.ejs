@@ -1,0 +1,55 @@
+<% include _header %>
+
+<h3 align="Center">   จองห้องพัก </h3>
+
+
+      <a href="/reserve/new" class = "btn btn-success"> จองห้องพัก </a>
+
+
+      <table Class="table table-bordered table-haver">
+        <thead>
+         <tr class="table-active">
+            <th>No</th>
+            <th>หมายเลขห้อง</th>
+            <th>ชื่ออพาร์อพาร์ทเมนท์</th>
+            <th>ชื่อผู้จอง </th>
+            <th>ที่อยู่ </th>
+            <th>เบอร์โทรศัพท์ </th>
+            <th>วันที่จอง</th>
+            <th> วันที่หมดจอง </th>
+            <th> ราคา </th>
+            <th> เงินจอง </th>
+            <th> สถานะ </th>
+            <th> บัตรประชาชน </th>
+            <th> วันที่เข้าอยู่ </th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+
+              <%  if(data){ %>
+                  <% for(var i = 0 ; i <data.length; i++){ %>
+                     <tr class="table-secondary">
+                      <td> <%= (i+1) %> </td>
+                      <td> <%= data[i].Rname %> </td>
+                      <td> <%= data[i].Apname %> </td>
+                      <td> <%= data[i].Name %> </td>
+                      <td> <%= data[i].Address %> </td>
+                      <td> <%= data[i].Phone %> </td>
+                      <td> <%= new Date(data[i].Datere).toLocaleDateString().split('T')[0] %> </td>
+                      <td> <%= new Date(data[i].Outtime).toLocaleDateString().split('T')[0] %> </td>
+                      <td> <%= data[i].Price  %> </td>
+                      <td> <%= data[i].Balance  %> </td>
+                      <td> <%= data[i].Status  %> </td>
+                      <td> <%= data[i].Idcard  %> </td>
+                      <td> <%= new Date(data[i].Datein).toLocaleDateString().split('T')[0] %> </td>
+
+                      <td>
+                        <a href="/reserve/delete/<%= data[i].No %>" class="btn btn-primary"> Delete </a>
+                        <a href="/reserve/update/<%= data[i].No %>" class="btn btn-warning"> Update </a>
+                      </td>
+                    </tr>
+                <%  } %>
+              <%  } %>
+            </tbody>
+        </table>

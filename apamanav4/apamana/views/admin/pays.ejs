@@ -1,0 +1,102 @@
+<% include _header%>
+  <div class="card border-info mb-3"">
+    <div class="card-header"> <h4 align="center"> ยังไม่ได้ชำระ </h4></div>
+    <div class="card-body">
+        <div class="row mt-3">
+
+          <table Class="table table-bordered table-haver">
+
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>หมายเลขห้อง</th>
+              <th>ชื่ออพาร์ทเมนท์</th>
+              <th>กำหนดชำระเงิน</th>
+              <th>วันที่ชำระเงิน</th>
+              <th>ค่าปรับ</th>
+              <th>ราคารวม</th>
+              <th>สถานะ</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if (data) { %>
+              <% for(var i=0; i<data.length; i++) { %>
+                 <tr class="table-secondary">
+                   <%  if(data[i].Status == 0 ){ %>
+                     <form action="/admin/pay/success/<%= data[i].No %>" method="post">
+                  <td> <%= (i+1) %> </td>
+                  <td> <%= data[i].Rname %> </td>
+                  <td> <%= data[i].Apname %> </td>
+                  <td> <%= data[i].Appointment %> </td>
+                  <td> <%= new Date(data[i].Date).toLocaleDateString( 'thai',{ day:'2-digit',month:'2-digit',year:'numeric'}) %> </td>
+                  <td> <input type="text" name="fine" value=""  class="form-control"></td>
+                  <td> <%= data[i].Amount %> </td>
+                  <td> <% if(data[i].Status == 1){ %> <span class="badge badge-success">ชำระแล้ว</span> <%  }  else { %> <span class="badge badge-danger"> ยังไม่ได้ชำระ</span>  <% } %> </td>
+                  <td>
+                    <a href="/admin/pay/delete/<%= data[i].No %>" class="btn btn-danger"> ลบ </a>
+                    <a href="/admin/pay/update/<%= data[i].No %>" class="btn btn-info"> แก้ไข </a>
+
+                          <button type="submit" class="btn btn-success">ชำระเงิน</button>
+                  </td>
+                </tr>
+                  <%  } %>
+               <% } %>
+              <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="card border-info mb-3"">
+    <div class="card-header"> <h4 align="center"> ชำระแล้ว </h4></div>
+    <div class="card-body">
+        <div class="row mt-3">
+          <table Class="table table-bordered table-haver">
+
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>หมายเลขห้อง</th>
+              <th>ชื่ออพาร์ทเมนท์</th>
+              <th>กำหนดชำระเงิน</th>
+              <th>วันที่ชำระเงิน</th>
+              <th>ค่าปรับ</th>
+              <th>ราคารวม</th>
+              <th>สถานะ</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if (data) { %>
+              <% for(var i=0; i<data.length; i++) { %>
+                 <tr class="table-secondary">
+                   <%  if(data[i].Status == 1 ){ %>
+                  <td> <%= (i+1) %> </td>
+                  <td> <%= data[i].Rname %> </td>
+                  <td> <%= data[i].Apname %> </td>
+                  <td> <%= data[i].Appointment %> </td>
+                  <td> <%= new Date(data[i].Date).toLocaleDateString( 'thai',{ day:'2-digit',month:'2-digit',year:'numeric'}) %> </td>
+                  <td> <%= data[i].Fine %> </td>
+                  <td> <%= data[i].Amount %> </td>
+                  <td> <% if(data[i].Status == 1){ %> <span class="badge badge-success">ชำระแล้ว</span> <%  }  else { %> <span class="badge badge-danger"> ยังไม่ได้ชำระ</span>  <% } %> </td>
+                  <td>
+                    <a href="/admin/pay/delete/<%= data[i].No %>" class="btn btn-danger"> ลบ </a>
+                    <a href="/admin/pay/update/<%= data[i].No %>" class="btn btn-info"> แก้ไข </a>
+                    <a href="/admin/pay/print/<%= data[i].No %>" class="btn btn-primary"> พิมพ์ </a>
+                  </td>
+                </tr>
+                  <%  } %>
+               <% } %>
+              <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+
+
+<% include _footer%>

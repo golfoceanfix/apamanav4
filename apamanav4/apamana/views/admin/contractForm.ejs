@@ -1,0 +1,124 @@
+<% include _header %>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-7">
+      <div class="card">
+        <div class="card-body">
+            <% if(data4) { %>
+              <form action="/admin/contract/update/<%=data4[0].id%>" method="post">
+            <% } else { %>
+              <form action="/admin/contract/add" method="post">
+            <% } %>
+
+              <div class="form-group">
+                <label>apartment</label> <a href="/admin/apartment/new">เพิ่ม</a>
+                <select class="form-control" name="apartment_id">
+                  <option>กรุณาเลือก</option>
+                  <% if(data1){ %>
+                  <%  for(var i=0; i<data1.length; i++){ %>
+                      <option value="<%= data1[i].id %>" <% if(data4) if(data1[i].id == data4[0].apartment_id){ %> selected <% } %>> <%= data1[i].name %> </option>
+                   <%}%>
+                  <%}%>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>หมายเลขห้อง </label> <a href="/admin/room/new">เพิ่ม</a>
+                <select class="form-control" name="room_id">
+                  <option>กรุณาเลือก</option>
+                  <% if(data2){ %>
+                  <%  for(var i=0; i<data2.length; i++){ %>
+                      <option value="<%= data2[i].id %>" <% if(data4) if(data2[i].id == data4[0].room_id){ %> selected <% } %>> <%= data2[i].name %> </option>
+                   <%}%>
+                  <%}%>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>ชื่อผู้ทำสัญญา </label> <a href="/admin/customer/new">เพิ่ม</a>
+                <select class="form-control" name="customer_id">
+                  <option>กรุณาเลือก</option>
+                  <% if(data3){ %>
+                  <%  for(var i=0; i<data3.length; i++){ %>
+                      <option value="<%= data3[i].id %>" <% if(data4) if(data3[i].id == data4[0].customer_id){ %> selected <% } %>> <%= data3[i].name %> </option>
+                   <%}%>
+                  <%}%>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>ราคาห้อง </label>
+                <% if(data4){ %>
+                <input type="text" name="room_price" value="<%= data4[0].room_price %>"  class="form-control">
+              <% } else { %>
+                <input type="text" name="room_price" value="" placeholder="ราคาห้อง" class="form-control">
+              <% } %>
+            </div>
+            <div class="form-group">
+            <label>วันที่ทำสัญญา </label>
+            <% if(data4){ %>
+            <input type="date" name="contract_date" value="<%= (data4[0].contract_date).toLocaleDateString().split("T")[0] %> "  class="form-control">
+            <% } else { %>
+            <input type="date" name="contract_date" value="<%=new Date().toISOString().split('T')[0]%>" placeholder="วันที่ทำสัญญา" class="form-control">
+            <% } %>
+              </div>
+                <div class="form-group">
+                  <label>เงินประกัน</label>
+                  <% if(data4){ %>
+                  <input type="text" name="bail" value="<%= data4[0].bail %>"  class="form-control">
+                <% } else { %>
+                  <input type="text" name="bail" value="" placeholder="เงินประกัน" class="form-control">
+                <% } %>
+                  </div>
+                  <div class="form-group">
+                  <label>สัญญา/เดือน </label>
+                  <% if(data4){ %>
+                  <input type="text" name="min_month" value="<%= data4[0].min_month %>"  class="form-control">
+                <% } else { %>
+                  <input type="text" name="min_month" value="" placeholder="สัญญา/เดือน" class="form-control">
+                <% } %>
+                    </div>
+                      <div class="form-group">
+                    <label>ค่าไฟ/หน่วย </label>
+                    <% if(data4){ %>
+                    <input type="text" name="electric_meter" value="<%= data4[0].electric_meter  %>"  class="form-control">
+                  <% } else { %>
+                    <input type="text" name="electric_meter" value="" placeholder="ค่าไฟ/หน่วย" class="form-control">
+                  <% } %>
+                  </div>
+                  <div class="form-group">
+                <label>ค่าน้ำ/หน่วย </label>
+                <% if(data4){ %>
+                <input type="text" name="water_meter" value="<%= data4[0].water_meter %>"  class="form-control">
+              <% } else { %>
+                <input type="text" name="water_meter" value="" placeholder="ค่าน้ำ/หน่วย" class="form-control">
+              <% } %>
+              </div>
+              <div class="form-group">
+            <label>สถานะ </label>
+            <% if(data4){ %>
+            <input type="text" name="status" value="<%= data4[0].status  %>"  class="form-control">
+          <% } else { %>
+            <input type="text" name="status" value="" placeholder="สถานะ" class="form-control">
+          <% } %>
+          </div>
+          <div class="form-group">
+        <label>วันหมดสัญญา </label>
+        <% if(data4){ %>
+        <input type="date" name="end_date" value="<%= (data4[0].end_date).toLocaleDateString().split("T")[0] %> "  class="form-control">
+        <% } else { %>
+        <input type="date" name="end_date" value="<%=new Date().toISOString().split('T')[0]%>" placeholder="วันหมดสัญญา" class="form-control">
+        <% } %>
+      </div>
+      <div style ="text-align:center">
+      <button type="submit" class="btn btn-success">[บันทึก]</button>
+      <a href="/admin/contract/new" class="btn btn-warning">[แก้ไข]</a>
+      </div>
+</form>
+            </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% include _footer %>

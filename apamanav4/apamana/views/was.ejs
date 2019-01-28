@@ -1,0 +1,44 @@
+<% include _header%>
+  <h4 align="center"><u>ค่าไฟ</u></h4>
+  <div class="container">
+    <div class="row mt-5">
+      <div class="col-md-15">
+
+        <a href="/wa/new" class="btn btn-primary">ADD</a>
+        <table class="table table-bordered table-hover ">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>ชื่ออพาร์ทเมนท์</th>
+              <th>หมายเลขห้อง</th>
+              <th>หน่วยไฟ</th>
+              <th>เดือน</th>
+              <th>ปี</th>
+              <th>วันที่บันทึก</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if (data) { %>
+              <% for(var i=0; i<data.length; i++) { %>
+                <tr>
+                  <td> <%= (i+1) %> </td>
+                  <td> <%= data[i].Apname %> </td>
+                  <td> <%= data[i].Rname %> </td>
+                  <td> <%= data[i].Unit %> </td>
+                  <td> <%= data[i].month %> </td>
+                  <td> <%= data[i].year %> </td>
+                  <td> <%= new Date(data[i].date).toLocaleDateString().split('T')[0] %> </td>
+                  <td>
+                    <a href="/wa/delete/<%= data[i].No %>" class="btn btn-danger"> Delete </a>
+                    <a href="/wa/update/<%= data[i].No %>" class="btn btn-info"> Update </a>
+                  </td>
+                </tr>
+              <% } %>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+<% include _footer%>

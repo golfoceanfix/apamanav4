@@ -1,0 +1,35 @@
+<% include _header %>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-9">
+      <div class="card">
+        <div class="card-body">
+          <% if ( data ) { %>
+          <form action="/admin/repairtype/update/<%= data.id %>" method="post">
+            <div class="form-group">
+              <input type="text" name="name" value="<%= data.name %>" class="form-control">
+              </div>
+              <button type="Submit" class="btn btn-primary"> Save  </button>
+          </form>
+          <% }else{ %>
+            <div class="col-md-9">
+          <form action="/admin/repairtype/add" method="post">
+                      <div class="form-group">
+                        <input type="text" name="name" placeholder="ชื่ออุปกรณ์" class="form-control">
+                        </div>
+                        <div style ="text-align:center">
+                        <button type="submit" class="btn btn-success">[บันทึก]</button>
+                        <a href="/admin/repairtype/new" class="btn btn-warning">[แก้ไข]</a>
+                        </div>
+                    </form>
+                    </div>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<% include _footer %>
